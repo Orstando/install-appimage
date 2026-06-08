@@ -2,7 +2,7 @@ import argparse
 import shutil
 import os
 
-parser = argparse.ArgumentParser(description = "AppImage Installer")
+parser = argparse.ArgumentParser(description = "Application Installer")
 parser.add_argument("-n", "--name", help = "Name of application", required = True, default = "")
 parser.add_argument("-d", "--description", help = "Description of application", default = "")
 parser.add_argument("-i", "--icon", help = "Application icon", default = "")
@@ -11,7 +11,6 @@ parser.add_argument("-c", "--commandline", help = "Name of binary for running on
 parser.add_argument('filename')
 
 argument = parser.parse_args()
-status = False
 
 print(f"Installing '{argument.name}'...")
 
@@ -24,9 +23,9 @@ if argument.description:
     desktop_entry += f"Comment={argument.description}\n"
 
 if argument.icon:
-    os.makedirs("/opt/appimage-installer/icons/", exist_ok=True)
-    shutil.copy(argument.icon, f"/opt/appimage-installer/icons/{argument.icon}")
-    desktop_entry += f"Icon=/opt/appimage-installer/icons/{argument.icon}\n"
+    os.makedirs("/opt/application-installer/icons/", exist_ok=True)
+    shutil.copy(argument.icon, f"/opt/application-installer/icons/{argument.icon}")
+    desktop_entry += f"Icon=/opt/application-installer/icons/{argument.icon}\n"
 if argument.terminal:
     desktop_entry += f"Terminal=true"
 else:
